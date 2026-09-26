@@ -1,123 +1,135 @@
-# MoneyTrack — Plan de negocio (v0.1, borrador)
+# MoneyTrack — Plan de negocio (v0.2, borrador)
 
 > Documento de trabajo. Las cifras son **supuestos para validar**, no datos de mercado confirmados.
+> Detalle técnico de cada conexión: [integraciones.md](integraciones.md).
 
 ---
 
 ## 1. Resumen
 
-**MoneyTrack** es una app de finanzas personales que ayuda a las personas a saber en qué se les va el dinero y a ahorrar más, **sin tener que conectar su cuenta bancaria**.
+**MoneyTrack** es la plataforma de finanzas personales con IA que le permite a un tico ver y controlar
+**todo** su dinero en un solo lugar: bancos, tarjetas, SINPE Móvil, efectivo, criptomonedas e inversiones,
+en colones y dólares.
 
-- **Problema:** mucha gente llega a fin de mes sin saber en qué gastó. Las apps que existen o son complicadas, o piden conectar el banco (desconfianza), o no funcionan bien con los bancos y monedas locales.
-- **Solución:** registrar un gasto en menos de 5 segundos, ver un resumen claro del mes y recibir alertas simples ("ya gastaste el 80 % de tu presupuesto de comida").
-- **Diferencial:** privacidad (los datos quedan en tu teléfono), rapidez para registrar y diseño pensado para el usuario hispanohablante (moneda local, efectivo, gastos informales).
-- **Modelo de ingresos:** freemium (gratis + versión Pro de pago).
-
----
-
-## 2. Cliente ideal
-
-| | Perfil principal |
-|---|---|
-| **Quién** | Personas de 20 a 35 años con ingresos propios (empleados jóvenes, estudiantes que trabajan) |
-| **Situación** | Cobran quincenal o mensual, usan tarjeta y efectivo, no llevan un control |
-| **Dolor** | "No sé en qué se me va el dinero", "quiero ahorrar pero no me alcanza" |
-| **Qué intentaron** | Excel, notas del celular, apps que abandonaron por complicadas |
-| **Qué valoran** | Rapidez, simplicidad, privacidad, que se vea bien |
-
-**Perfil secundario (más adelante):** parejas que comparten gastos.
+- **Referencia:** Monarch Money (EE. UU.), adaptado a la realidad de Costa Rica y América Latina.
+- **Problema:** en Costa Rica no hay open banking. El dinero de una persona está repartido entre
+  varios bancos, SINPE, efectivo, dos monedas, cripto y brokers, y ninguna herramienta lo junta.
+- **Solución:** captura automática por varios canales (notificaciones, SMS, correo, Google Wallet,
+  Apple Pay, estados de cuenta, blockchains y brokers), con **IA como eje central** que lee, ordena,
+  categoriza y aconseja.
+- **Visión:** empezar en Costa Rica, expandirse a Latinoamérica y, más adelante, ofrecer versiones Enterprise.
 
 ---
 
-## 3. Competencia
+## 2. El problema en Costa Rica
 
-| App | Fortaleza | Debilidad que aprovechamos |
+1. **Sin open banking:** las apps no pueden conectarse a los bancos como en EE. UU. o Europa.
+2. **Dinero fragmentado:** la mayoría usa varios bancos, SINPE Móvil, efectivo y a veces cooperativas.
+3. **Dos monedas:** salarios, alquileres, ahorros y deudas se mezclan entre colones y dólares.
+4. **Nueva generación inversora:** cada vez más ticos tienen cripto o invierten en brokers
+   internacionales, sin una vista consolidada de su patrimonio.
+5. **Herramientas actuales:** Excel, las apps de cada banco (que solo ven su propio banco) o apps
+   extranjeras que no funcionan con bancos locales.
+
+---
+
+## 3. Cliente ideal
+
+| | Perfil principal | Perfil secundario |
 |---|---|---|
-| Excel / Google Sheets | Gratis y flexible | Tedioso, no funciona bien en el celular |
-| Monefy | Muy simple | Pocos análisis, poca motivación para ahorrar |
-| Wallet (BudgetBakers), Spendee, Money Lover | Completas | Recargadas; varias funciones clave son de pago |
-| YNAB | Método de presupuesto muy fuerte | Caro, en inglés, curva de aprendizaje alta |
-| Apps de los bancos | Datos automáticos | Solo ven un banco; no incluyen el efectivo |
+| **Quién** | Profesionales de 25 a 45 años, ingresos medios y altos, urbanos | Parejas y familias que manejan las finanzas del hogar |
+| **Situación** | 2 o más bancos, tarjetas de crédito, SINPE; algunos con cripto o broker | Gastos compartidos, metas en conjunto |
+| **Dolor** | "No tengo idea de cuánto tengo ni en qué se me va" | "No sabemos cuánto gastamos como hogar" |
+| **Disposición a pagar** | Alta si les ahorra tiempo y dinero | Media o alta |
 
-**Nuestro lugar:** tan simple como Monefy, con metas de ahorro y alertas útiles, en español, con buen soporte para el efectivo.
-
----
-
-## 4. Propuesta de valor
-
-> "Sabe en qué se va tu dinero en 5 segundos al día."
-
-1. **Registro ultrarrápido:** monto → categoría → listo.
-2. **Resumen del mes claro:** cuánto entró, cuánto salió y en qué.
-3. **Presupuestos por categoría** con alertas.
-4. **Metas de ahorro** con progreso visual.
-5. **Privado por defecto:** sin cuentas bancarias ni registro obligatorio.
+> Monarch demostró que existe un público dispuesto a **pagar** por una vista completa y sin anuncios de
+> sus finanzas. Nuestro primer cliente es ese perfil, en versión tica.
 
 ---
 
-## 5. Producto: MVP (primera versión)
+## 4. Producto: qué hace MoneyTrack (estilo Monarch)
 
-Lo **mínimo** para probar que la gente lo usa todos los días.
+| Módulo | Qué hace |
+|---|---|
+| **Panel principal** | Saldo total, gastos del mes, próximos pagos y alertas |
+| **Cuentas** | Todos los bancos, tarjetas, efectivo, cripto e inversiones en un solo lugar |
+| **Transacciones** | Captura automática, categorías y búsqueda por IA |
+| **Flujo de caja** | Ingresos contra gastos por mes, en CRC y USD |
+| **Presupuestos** | Por categoría o flexibles, con alertas |
+| **Recurrentes** | Detecta suscripciones y pagos fijos (Netflix, luz, agua, préstamos, marchamo) |
+| **Metas** | Ahorro para viaje, fondo de emergencia, prima de una casa… |
+| **Patrimonio (net worth)** | Activos menos deudas a lo largo del tiempo |
+| **Inversiones** | Portafolio de brokers y cripto, con rendimiento y composición |
+| **Asistente IA** | Preguntas en lenguaje natural, consejos y proyecciones, en la app y por WhatsApp |
+| **Hogar compartido** | Invitar a la pareja o la familia con permisos |
+| **Reportes** | Tendencias, comparación entre meses y exportación |
 
-### Entra en el MVP
-- Registrar ingresos y gastos (monto, categoría, fecha, nota opcional)
-- Categorías predefinidas y editables
-- Pantalla de inicio: saldo del mes, total de gastos y gráfico por categoría
-- Historial con filtros por mes y categoría
-- Presupuesto mensual por categoría con alerta al 80 % y al 100 %
-- Datos guardados en el dispositivo
-- Exportar a CSV (para que el usuario no sienta que sus datos quedan "atrapados")
+### Lo que Monarch no tiene y MoneyTrack sí
+- Captura **sin open banking** (SMS, notificaciones, correo, billeteras y estados de cuenta)
+- **Factura electrónica de Hacienda** con detalle de cada compra, artículo por artículo
+- **SINPE Móvil** como fuente principal de datos
+- **Colones y dólares** nativos, con el tipo de cambio oficial del BCCR
+- Gastos típicos de Costa Rica: marchamo, aguinaldo, CCSS, RTV, pulpería, feria
 
-### NO entra en el MVP (después)
-- Cuentas de usuario y sincronización en la nube
-- Conexión con bancos
-- Gastos compartidos
-- Varias monedas
-- Lectura automática de SMS o notificaciones del banco
+---
+
+## 5. Competencia
+
+| Alternativa | Fortaleza | Debilidad |
+|---|---|---|
+| Monarch Money, YNAB, Copilot | Productos excelentes | Dependen del open banking de EE. UU.; no sirven con bancos de Costa Rica |
+| Apps de cada banco | Datos automáticos | Solo ven su propio banco; no incluyen efectivo, cripto ni otras inversiones |
+| Apps de gastos manuales (Monefy, Wallet, Spendee) | Simples | Todo es manual; no hay IA ni vista de patrimonio |
+| Excel / Google Sheets | Flexible | Tedioso y todo manual |
+
+**Nuestra ventaja defendible:** los lectores de datos ticos (SMS, correos y estados de cuenta de cada banco,
+facturas de Hacienda), el diccionario de comercios locales y una IA entrenada con el comportamiento
+financiero costarricense. Eso toma tiempo y datos, y un competidor extranjero no lo replica fácilmente.
 
 ---
 
 ## 6. Modelo de ingresos
 
-**Freemium**
+**Suscripción, con prueba gratis** (modelo tipo Monarch, adaptado a Costa Rica):
 
-| Gratis | Pro (suscripción) |
-|---|---|
-| Gastos e ingresos ilimitados | Todo lo gratuito |
-| Hasta 3 presupuestos | Presupuestos ilimitados |
-| 1 meta de ahorro | Metas ilimitadas |
-| Resumen mensual | Reportes avanzados y comparación entre meses |
-| — | Respaldo en la nube y varios dispositivos |
-| — | Exportar a PDF/Excel |
+| Plan | Precio inicial a probar | Incluye |
+|---|---|---|
+| **Gratis** | ₡0 | Registro manual, 1 canal automático, presupuesto básico |
+| **Premium** | ~₡3 500–5 000/mes o ~₡35 000–45 000/año | Todos los canales, IA completa, cripto e inversiones, patrimonio, hogar compartido |
+| **Enterprise** (futuro) | A la medida | Ver sección 11 |
 
-**Precio inicial para probar:** aprox. 2–3 USD/mes o 20–25 USD/año (ajustar al país; precios regionales en Play Store / App Store).
-
-**Otras fuentes posibles (más adelante):** alianzas con productos financieros (cuentas de ahorro, inversión), siempre transparentes y sin vender los datos del usuario.
+- Prueba Premium gratis de 14 días.
+- Precios por validar con entrevistas y pruebas de precio.
+- Sin publicidad y **sin vender datos**: esa es parte de la promesa de marca.
 
 ---
 
 ## 7. Números básicos (supuestos a validar)
 
-| Supuesto | Valor |
-|---|---|
-| Usuarios activos al mes, año 1 | 10 000 |
-| % que paga Pro | 3 % → 300 usuarios |
-| Ingreso promedio por usuario de pago | 2 USD/mes |
-| **Ingreso mensual estimado** | **~600 USD/mes** |
+| Supuesto | Año 1 | Año 2 |
+|---|---|---|
+| Usuarios registrados | 15 000 | 60 000 |
+| % en Premium | 5 % | 7 % |
+| Usuarios Premium | 750 | 4 200 |
+| Ingreso mensual por usuario Premium | ~7 USD | ~7 USD |
+| **Ingreso anual recurrente aprox.** | **~63 000 USD** | **~350 000 USD** |
 
-Con los datos guardados en el teléfono, el costo de servidores del MVP es casi **cero**. Los costos principales son el tiempo de desarrollo, las cuentas de desarrollador (Google Play: pago único de 25 USD; Apple: 99 USD/año) y el marketing.
+**Costos principales:** equipo de desarrollo, servidores y base de datos, uso de IA (baja si primero se
+usan reglas y la IA solo cuando hace falta), correo entrante, auditorías de seguridad, asesoría legal y marketing.
 
-**Conclusión:** el negocio escala por **volumen de usuarios** y por la **tasa de conversión a Pro**. Esas son las dos métricas que hay que empujar.
+> Costa Rica sirve para **validar y afinar** el producto. Los números grandes vienen con la expansión
+> regional y la versión Enterprise.
 
 ---
 
 ## 8. Cómo conseguir usuarios
 
-1. **Contenido en TikTok, Instagram Reels y YouTube Shorts** sobre finanzas personales ("en qué se me fue la quincena", retos de ahorro de 30 días).
-2. **Retos de ahorro dentro de la app** que se comparten en redes.
-3. **Posicionamiento en tiendas (ASO):** palabras clave como "control de gastos", "presupuesto" y "ahorro".
-4. **Comunidades:** grupos universitarios y comunidades de finanzas personales.
-5. **Recomendaciones:** 1 mes de Pro gratis por cada amigo que se una.
+1. **Contenido de finanzas personales para ticos** (TikTok, Instagram, YouTube): aguinaldo, marchamo,
+   "¿en qué se me fue la quincena?", colones contra dólares.
+2. **Alianzas con creadores** de finanzas y cripto de Costa Rica.
+3. **Comunidades:** grupos de inversión, cripto y emprendimiento; universidades.
+4. **Referidos:** 1 mes de Premium gratis por cada amigo que se suscriba.
+5. **Momentos clave del año:** enero (propósitos), aguinaldo (diciembre), marchamo (noviembre y diciembre).
 
 ---
 
@@ -125,51 +137,75 @@ Con los datos guardados en el teléfono, el costo de servidores del MVP es casi 
 
 | Métrica | Meta inicial |
 |---|---|
-| Usuarios que registran al menos 1 gasto el primer día | > 60 % |
-| Retención al día 7 | > 25 % |
-| Retención al día 30 | > 12 % |
-| Gastos registrados por usuario activo por semana | > 10 |
-| Conversión a Pro | 2–5 % |
+| Usuarios que conectan al menos 1 canal automático en el primer día | > 50 % |
+| Transacciones capturadas automáticamente (contra manuales) | > 80 % |
+| Precisión de la categorización por IA | > 90 % |
+| Retención al día 30 | > 25 % |
+| Conversión de prueba a Premium | > 20 % |
+| Cancelación mensual de Premium | < 5 % |
 
 ---
 
-## 10. Riesgos y cómo reducirlos
+## 10. Hoja de ruta
+
+| Fase | Tiempo aprox. | Qué incluye |
+|---|---|---|
+| **0. Validación** | 1 mes | 20–30 entrevistas; recolectar ejemplos reales (tapados) de SMS, correos y estados de cuenta de los bancos principales; landing con lista de espera (meta: 500 personas); prototipos técnicos de Atajos en iOS y del lector de notificaciones en Android |
+| **1. MVP** | 3–4 meses | App iOS, Android y web. Cuentas, transacciones, flujo de caja, presupuestos y patrimonio. Captura: correo + factura electrónica, Android (SMS, apps bancarias, Google Wallet), iOS (Atajos para SMS y Apple Pay), estados de cuenta con IA, efectivo. IA: lectura, categorización, eliminación de duplicados y asistente básico |
+| **2. Beta cerrada** | 1–2 meses | 100–300 usuarios; medir precisión y retención; ajustar precios |
+| **3. Lanzamiento + Premium** | Mes 6–7 | Tiendas de apps, marketing y cobro de Premium |
+| **4. Inversiones** | Mes 7–10 | Billeteras y exchanges de cripto; brokers; recurrentes; metas; hogar compartido; asistente por WhatsApp |
+| **5. Expansión** | Año 2 | Panamá, Guatemala, Colombia u otros; alianzas con bancos y cooperativas |
+| **6. Enterprise** | Año 2+ | Ver sección 11 |
+
+---
+
+## 11. Enterprise (más adelante)
+
+Ideas a validar cuando el producto personal ya funcione:
+- **Pymes y emprendedores:** finanzas del negocio separadas de las personales, facturación e impuestos.
+- **Beneficio para empleados:** empresas que pagan MoneyTrack Premium a su personal como bienestar financiero.
+- **Asesores financieros y contadores:** panel para ver, con permiso, las finanzas de sus clientes.
+- **Bancos y cooperativas:** versión de marca blanca o datos anónimos y agregados (siempre con consentimiento).
+
+---
+
+## 12. Equipo necesario (mínimo)
+
+| Rol | Para qué |
+|---|---|
+| Fundador / producto | Visión, clientes, alianzas, ventas |
+| Desarrollo móvil (React Native) | Apps iOS y Android, módulo nativo de notificaciones y Atajos |
+| Desarrollo backend + datos | API, captura, base de datos, seguridad |
+| IA / aprendizaje automático | Lectura, categorización, asistente |
+| Diseño UX/UI | Que se sienta tan pulido como Monarch |
+| Legal y seguridad (externo) | Ley 8968, PRODHAB, términos y auditorías |
+
+> Gran parte del desarrollo lo podemos avanzar juntos en este repositorio.
+
+---
+
+## 13. Riesgos y cómo reducirlos
 
 | Riesgo | Mitigación |
 |---|---|
-| La gente deja de registrar gastos (el problema #1 de estas apps) | Registro en 5 segundos, recordatorio diario, rachas y metas |
-| Mercado con mucha competencia | Nicho claro: simple, privado, en español y con buen manejo del efectivo |
-| Pocos usuarios pagan | Probar precios y beneficios Pro pronto; precios por país |
-| Perder datos al cambiar de teléfono | Exportar/importar desde el MVP; respaldo en la nube en Pro |
-| Temas legales con datos financieros | Al no conectar bancos ni guardar datos en servidores, el riesgo inicial es bajo; revisarlo antes de lanzar la nube |
+| Apple o Google cambian lo que permiten (Atajos, notificaciones) | Varios canales a la vez; el correo y los estados de cuenta funcionan siempre |
+| El usuario no configura los canales | Asistente de configuración paso a paso, videos cortos y ayuda por WhatsApp |
+| Desconfianza al compartir datos financieros | Solo lectura, nunca contraseñas bancarias, cifrado y política de privacidad clara |
+| Costo de la IA | Reglas primero y la IA solo cuando hace falta; medir el costo por usuario |
+| Los bancos cambian el formato de sus mensajes | La IA como respaldo cuando falla una plantilla, y monitoreo de errores de lectura |
+| Regulación | Asesoría legal antes de lanzar y antes de cualquier función de pagos o inversiones |
+| Alcance muy grande | Lanzar por fases; el MVP se centra en el núcleo estilo Monarch con la captura tica |
 
 ---
 
-## 11. Hoja de ruta
+## 14. Próximos pasos inmediatos
 
-| Fase | Duración aprox. | Objetivo |
-|---|---|---|
-| **0. Validación** | 2–3 semanas | Entrevistar a 15–20 personas del perfil; landing page con lista de espera (meta: 200 correos) |
-| **1. MVP** | 6–8 semanas | App con las funciones de la sección 5; prueba cerrada con 50–100 personas |
-| **2. Lanzamiento** | 4 semanas | Publicar en tiendas, empezar contenido en redes y medir retención |
-| **3. Monetización** | Mes 4–6 | Lanzar Pro, respaldo en la nube y reportes avanzados |
-| **4. Crecimiento** | Mes 6+ | Gastos compartidos, varias monedas, alianzas |
-
----
-
-## 12. Próximos pasos inmediatos
-
-- [ ] Definir el país o los países de lanzamiento
-- [ ] Escribir el guion de entrevistas y hablar con 15–20 personas
-- [ ] Crear una landing page con lista de espera
-- [ ] Diseñar las pantallas del MVP (inicio, agregar gasto, historial, presupuestos)
-- [ ] Elegir la tecnología (sugerencia: app web instalable o React Native, con los datos en el dispositivo)
-
----
-
-## Preguntas abiertas
-
-1. ¿En qué país o países lanzamos primero?
-2. ¿Tienes presupuesto para marketing o será 100 % orgánico?
-3. ¿Quién va a programar la app (tú, un socio, o la hacemos juntos aquí)?
-4. ¿Nombre final: "MoneyTrack" o algo más pegajoso en español?
+- [ ] Elegir los bancos del MVP (sugerencia: BAC, BCR, BN, Banco Popular)
+- [ ] Recolectar ejemplos reales, tapados, de SMS, correos y estados de cuenta de esos bancos
+- [ ] Prototipo iOS: Atajo que envía un SMS del banco y un pago con Apple Pay a una API de prueba
+- [ ] Prototipo Android: lector de notificaciones que capta SINPE y Google Wallet
+- [ ] Guion de entrevistas y 20–30 conversaciones con el cliente ideal
+- [ ] Landing page con lista de espera
+- [ ] Definir el equipo y el presupuesto inicial
+- [ ] Consulta legal: Ley 8968, PRODHAB y alcance frente a SUGEF
