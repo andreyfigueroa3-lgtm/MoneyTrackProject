@@ -6,3 +6,4 @@ Plataforma de finanzas personales con IA para Costa Rica y América Latina: todo
 
 - [Plan de negocio](docs/plan-de-negocio.md)
 - [Integraciones y captura de datos](docs/integraciones.md)
+- [Guía de kickoff y plan de ejecución (equipo de 2)](docs/plan-kickoff-y-ejecucion.md)
